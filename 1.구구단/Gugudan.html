@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>1.구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div>
+        {{ x }} 곱하기 {{ y }} 는?
+      </div>
+      <form action="" v-on:submit="onSubmitForm">
+        <input type="number" ref="answer" v-model="value">
+        <button type="submit">입력</button>
+      </form>
+      <div id="result">
+        {{ result }}
+      </div>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#root",
+        data: {
+          x: Math.ceil(Math.random() * 9),
+          y: Math.ceil(Math.random() * 9),
+          value: '',
+          result: ''
+        },
+        methods: {
+          onSubmitForm(e) {
+            e.preventDefault();
+            console.log(this.x * this.y, this.value, this.result);
+            if(this.x * this.y === parseInt(this.value)){
+              this.result = '정답';
+              this.x = Math.ceil(Math.random() * 9);
+              this.y = Math.ceil(Math.random() * 9);
+              this.value = '';
+              this.$refs.answer.focus();
+            }else{
+              this.result = '오답';
+              this.value = '';
+              this.$refs.answer.focus();
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
