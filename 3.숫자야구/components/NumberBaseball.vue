@@ -2,7 +2,7 @@
   <div>
     <h1>{{result}}</h1>
     <form action="" @submit.prevent="onSubmitForm">
-      <input type="number" ref="answer" minlength="4
+      <input type="text" ref="answer" minlength="4
       " maxlength="4" v-model="value">
       <button type="type">입력</button>
     </form>
@@ -45,6 +45,7 @@ export default {
           try: this.value,
           result: '홈런'
         });
+        this.result = '홈런 !';
         this.value ='';
         this.$refs.answer.focus();
         this.answer = getNumbers();
